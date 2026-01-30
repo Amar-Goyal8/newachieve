@@ -1,0 +1,21 @@
+name: Auto Merge PR
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - labeled
+      - unlabeled
+  pull_request_review:
+    types:
+      - submitted
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Merge labeled PRs
+        uses: pascalgn/size-action@v2
+        with: # (example configuration for a specific action, you would use an actual auto-merge action)
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          # ... other specific settings for the auto-merge action you choose
